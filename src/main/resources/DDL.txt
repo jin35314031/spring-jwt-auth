@@ -1,0 +1,33 @@
+create table organizations
+(
+    org_id   int auto_increment
+        primary key,
+    org_name text null
+);
+
+create table peoples
+(
+    login_id  text          not null,
+    people_id int auto_increment
+        primary key,
+    password  text          not null,
+    org_id    int default 1 null,
+    constraint login_id_unique
+        unique (login_id)
+)
+    comment 'アプリケーション利用者情報を格納するテーブル';
+
+
+create table plans
+(
+    plan_id    int auto_increment
+        primary key,
+    login_id   text       null,
+    title      text       null,
+    start_date datetime   null,
+    end_date   datetime   null,
+    label      text       null,
+    body       text       null,
+    private    tinyint(1) null,
+    place      text       null
+);

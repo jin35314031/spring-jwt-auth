@@ -4,17 +4,20 @@ public class People {
     private String peopleId;
     private String loginId;
     private String password;
+    private Integer orgId;
 
-    public People(String peopleId, String loginId, String password) {
+    public People(String peopleId, String loginId, String password,Integer orgId) {
         this.peopleId = peopleId;
         this.loginId = loginId;
         this.password = password;
+        this.orgId = orgId;
     }
 
     public People(String loginId, String password) {
         this.peopleId = null;
         this.loginId = loginId;
         this.password = password;
+        this.orgId = null;
     }
 
     public String getPeopleId() {
@@ -39,5 +42,13 @@ public class People {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(int orgId) {
+        this.orgId = orgId;
     }
 }

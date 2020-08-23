@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("User Not Found with -> username or email: " + username);
         }
 
-        LOGGER.info("username:::::::::::"+username+":::::::::::Data::::::"+people.getLoginId());
+        LOGGER.info("ログイン成功:::::username::::"+username+"::::::LoginID::::"+people.getLoginId());
 
         return User.withUsername(username)
                 .password(people.getPassword())

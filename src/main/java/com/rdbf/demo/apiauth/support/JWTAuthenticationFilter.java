@@ -72,11 +72,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException, ServletException {
         // loginIdからtokenを設定してヘッダにセットする
         String token = Jwts.builder()
-                .setSubject(((User)auth.getPrincipal()).getUsername()) // usernameだけを設定する
+                .setSubject(((User)auth.getPrincipal()).getUsername())// usernameだけを設定する
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET.getBytes())
                 .compact();
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+        res.getWriter().write(
+                "{\"token\":\"" + token + "\"}"
+        );
 
         // ここでレスポンスを組み立てると個別のパラメータを返せるがFilterの責務の範囲内で実施しなければならない
         // auth.getPrincipal()で取得できるUserDetailsは自分で作ったEntityクラスにもできるのでカスタム属性は追加可能
