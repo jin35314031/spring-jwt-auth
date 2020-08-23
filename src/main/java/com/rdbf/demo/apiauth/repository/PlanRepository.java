@@ -18,7 +18,7 @@ public interface PlanRepository {
                         "VALUES(#{loginId},#{title},#{startDate},#{endDate},#{label},#{body},#{share},#{place})")
     void createPlan(Plan plan);
 
-    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,private,place FROM plans WHERE login_id = #{loginId}")
+    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,share,place FROM plans WHERE login_id = #{loginId}")
     List<Plan> findAllOwnPlan(String loginId);
 
 //    @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.private,plans.place"+
@@ -38,7 +38,7 @@ public interface PlanRepository {
 //            "WHERE peoples.org_id = (SELECT peoples.org_id from peoples WHERE peoples.login_id = 'test')")
 //    List<Plan> findAllOwnOrganization(String loginId);
 
-    @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.private,plans.place FROM plans WHERE login_id IN (#{loginIdList})")
+    @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.share,plans.place FROM plans WHERE login_id IN (#{loginIdList})")
     List<Plan> findByLoginIdList(String loginIdList);
 
     @Delete("DELETE FROM plans WHERE plan_id = #{planId}")
