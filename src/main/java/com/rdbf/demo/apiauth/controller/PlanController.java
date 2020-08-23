@@ -43,7 +43,8 @@ public class PlanController {
     }
 
     @PostMapping("/plan")
-    void newPlan(@RequestBody  @DateTimeFormat(pattern = "YYYY-MM-DD HH:MM:SS") Plan newPlan) {
+    void newPlan(@RequestBody Plan newPlan) {
+        LOGGER.info("planValue::::::"+newPlan.getStartDate());
         planRepository.createPlan(newPlan);
     }
 

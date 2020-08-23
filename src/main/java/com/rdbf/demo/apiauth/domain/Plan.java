@@ -9,9 +9,9 @@ public class Plan {
     private Integer planId;
     private String loginId;
     private String title;
-    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:SS")
+   // @JsonFormat(pattern = "yyyy/MM/dd'T'HH:mm:ss.SSSZ")
     private Date startDate;
-    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:SS")
+   // @JsonFormat(pattern = "yyyy/MM/dd'T'HH:mm:ss.SSSZ")
     private Date endDate;
     private String label;
     private String body;
