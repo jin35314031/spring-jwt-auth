@@ -1,14 +1,12 @@
 package com.rdbf.demo.apiauth.controller;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rdbf.demo.apiauth.domain.Plan;
 import com.rdbf.demo.apiauth.repository.PlanRepository;
 import com.rdbf.demo.apiauth.service.PlanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +31,6 @@ public class PlanController {
     List<Plan> allOwnPlan() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object principal = auth.getPrincipal();
-        LOGGER.info("プリンシパルの中身は？:::::" +principal.toString());
         return planRepository.findAllOwnPlan(principal.toString());
     }
 
@@ -44,11 +41,10 @@ public class PlanController {
 
     @PostMapping("/plan")
     void newPlan(@RequestBody Plan newPlan) {
-        LOGGER.info("planValue::::::"+newPlan.getStartDate());
         planRepository.createPlan(newPlan);
     }
 
-    @DeleteMapping("/plan")
+    @PostMapping("/del-plan")
     void deletePlan(@RequestBody Plan deleteTargetPlan) {
         planRepository.deletePlan(deleteTargetPlan);
     }
