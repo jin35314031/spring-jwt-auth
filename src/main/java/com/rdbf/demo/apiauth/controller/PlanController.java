@@ -48,8 +48,9 @@ public class PlanController {
         planRepository.createPlan(newPlan);
     }
 
-    @DeleteMapping("/plan")
+    @PostMapping("/del-plan")
     void deletePlan(@RequestBody Plan deleteTargetPlan) {
+        LOGGER.info("bodyValue" +deleteTargetPlan);
         planRepository.deletePlan(deleteTargetPlan);
     }
 }
