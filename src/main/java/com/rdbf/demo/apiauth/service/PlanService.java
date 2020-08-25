@@ -37,7 +37,6 @@ public class PlanService {
             for(People peopleTemp : memberList){
                 orgPlanList.addAll(planRepository.findAllOwnPlan(peopleTemp.getLoginId()));
             }
-            LOGGER.info("idListの中身は？:::::" +orgPlanList);
             return orgPlanList;
         }
 }
