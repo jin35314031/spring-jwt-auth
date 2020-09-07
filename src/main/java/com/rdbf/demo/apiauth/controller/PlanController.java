@@ -48,4 +48,10 @@ public class PlanController {
     void deletePlan(@RequestBody Plan deleteTargetPlan) {
         planRepository.deletePlan(deleteTargetPlan);
     }
+
+    @PostMapping("/update-plan")
+    void updatePlan(@RequestBody Plan updateTargetPlan){
+        //LOGGER.info("updateTargetPlan::::::::::::::::::::::::::" + updateTargetPlan);
+        planRepository.updatePlan(updateTargetPlan);
+    }
 }

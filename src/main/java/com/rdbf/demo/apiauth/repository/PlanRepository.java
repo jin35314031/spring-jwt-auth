@@ -2,10 +2,7 @@ package com.rdbf.demo.apiauth.repository;
 
 import com.rdbf.demo.apiauth.domain.People;
 import com.rdbf.demo.apiauth.domain.Plan;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -43,4 +40,7 @@ public interface PlanRepository {
 
     @Delete("DELETE FROM plans WHERE plan_id = #{planId}")
     void deletePlan(Plan deleteTargetPlan);
+
+    @Update("UPDATE FROM plans SET title=#{title},start_date=#{startDate},end_date=#{endDate},label=#{label},body=#{body},share=#{share},place=#{place} WHERE plan_id = #{planId}")
+    void updatePlan(Plan updateTargetPlan);
 }
