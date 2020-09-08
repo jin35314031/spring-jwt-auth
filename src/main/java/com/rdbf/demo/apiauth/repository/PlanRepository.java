@@ -15,9 +15,8 @@ public interface PlanRepository {
                         "VALUES(#{loginId},#{title},#{startDate},#{endDate},#{label},#{body},#{share},#{place})")
     void createPlan(Plan plan);
 
-    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,share,place FROM plans WHERE login_id = #{loginId}")
+    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,share,place FROM plans WHERE login_id = #{loginId} ORDER BY start_date")
     List<Plan> findAllOwnPlan(String loginId);
-
 //    @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.private,plans.place"+
 //            "FROM plans" +
 //            "WHERE plans.login_id in (" +
