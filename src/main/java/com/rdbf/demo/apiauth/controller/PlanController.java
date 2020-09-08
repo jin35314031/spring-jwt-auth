@@ -51,7 +51,7 @@ public class PlanController {
 
     @PostMapping("/update-plan")
     void updatePlan(@RequestBody Plan updateTargetPlan){
-        //LOGGER.info("updateTargetPlan::::::::::::::::::::::::::" + updateTargetPlan);
+        LOGGER.info("updateTargetPlan::::::::::::::::::::::::::" + updateTargetPlan);
         planRepository.updatePlan(updateTargetPlan);
     }
 }

@@ -41,6 +41,6 @@ public interface PlanRepository {
     @Delete("DELETE FROM plans WHERE plan_id = #{planId}")
     void deletePlan(Plan deleteTargetPlan);
 
-    @Update("UPDATE FROM plans SET title=#{title},start_date=#{startDate},end_date=#{endDate},label=#{label},body=#{body},share=#{share},place=#{place} WHERE plan_id = #{planId}")
+    @Update("UPDATE plans SET title=#{title},start_date=#{startDate},end_date=#{endDate},label=#{label},body=#{body},share=#{share},place=#{place} WHERE plan_id = #{planId}")
     void updatePlan(Plan updateTargetPlan);
 }
