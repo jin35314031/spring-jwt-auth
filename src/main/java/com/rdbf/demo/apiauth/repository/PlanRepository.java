@@ -2,10 +2,7 @@ package com.rdbf.demo.apiauth.repository;
 
 import com.rdbf.demo.apiauth.domain.People;
 import com.rdbf.demo.apiauth.domain.Plan;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,9 +15,8 @@ public interface PlanRepository {
                         "VALUES(#{loginId},#{title},#{startDate},#{endDate},#{label},#{body},#{share},#{place})")
     void createPlan(Plan plan);
 
-    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,share,place FROM plans WHERE login_id = #{loginId}")
+    @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,share,place FROM plans WHERE login_id = #{loginId} ORDER BY start_date")
     List<Plan> findAllOwnPlan(String loginId);
-
 //    @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.private,plans.place"+
 //            "FROM plans" +
 //            "WHERE plans.login_id in (" +
@@ -43,4 +39,7 @@ public interface PlanRepository {
 
     @Delete("DELETE FROM plans WHERE plan_id = #{planId}")
     void deletePlan(Plan deleteTargetPlan);
+
+    @Update("UPDATE plans SET title=#{title},start_date=#{startDate},end_date=#{endDate},label=#{label},body=#{body},share=#{share},place=#{place} WHERE plan_id = #{planId}")
+    void updatePlan(Plan updateTargetPlan);
 }
